@@ -6,38 +6,43 @@ import com.khs.restful.system.RequestType;
 
 public class RestTemplate {
 
-	//private IMethod method;
-	
 	public RestTemplate() {}
 	
 //	public RestTemplate(HttpConfig httpConfig) {}
 	
-	public JsonResponse json(String url) {
+	public JsonResponse json(String url) throws RestfulException {
 		return execute(new Get(url, RequestType.JSON), JsonResponse.class);
 	}
 	
-	private <T> T json(String url, Class<T> clazz) {
-		//return this.json(new Get(url, RequestType.JSON));
-		return null;
-	}
-	
-	private <T extends Response> T execute(IMethod method, Class<T> clazz) {
-		RestClient client = new RestClient(clazz);
-		return (T) client.execute(method);
-	}
-	
-	
-	
-	public IResponse text(String url) {
-		
-		return null;
+	public JsonResponse json(String url, IMethod method) throws RestfulException {
+		method.setMethodValues(url, RequestType.JSON);
+		return execute(method, JsonResponse.class);
 	}
 
-	public IResponse text(String url, IMethod method) {
-		return null;
+	public <T> T json(String url, Class<T> clazz) throws RestfulException {
+		JsonResponse response = json(url);
+		T anObject = response.serialize(clazz);
+		return anObject;
 	}
 	
-//	public IResponse json<IResponse>() {
-//		return null;
-//	}
+	public <T> T json(String url, IMethod method, Class<T> clazz) throws RestfulException {
+		JsonResponse response = json(url, method);
+		T anObject = response.serialize(clazz);
+		return anObject;
+	}
+
+	private <T extends IResponse> T execute(IMethod method, Class<T> clazz) throws RestfulException {
+		RestClient<T> client = new RestClient<T>(clazz);
+		return client.execute(method);
+	}
+	
+	
+	public TextResponse text(String url) throws RestfulException {		
+		return execute(new Get(url, RequestType.TEXT), TextResponse.class);
+	} 
+
+	public TextResponse text(String url, IMethod method) throws RestfulException {
+		method.setMethodValues(url, RequestType.TEXT);
+		return execute(method, TextResponse.class);
+	}
 }
