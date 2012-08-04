@@ -1,14 +1,14 @@
-package com.khs.restful;
+package com.khs.restful.client;
 
 public interface IResponse {
 
 	 public String getContenetType();
 	 
-	 public void setResponseText(String text);
-	 
 	 public String getResponseText();
 	 
 	 public boolean isSuccess();
+	 
+	 public void setResponseText(String text);
 	 
 	 public void setSuccess(boolean success);
 }

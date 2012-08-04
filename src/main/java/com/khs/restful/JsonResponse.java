@@ -2,6 +2,8 @@ package com.khs.restful;
 
 import java.util.Set;
 
+import com.khs.restful.client.IResponse;
+import com.khs.restful.client.Response;
 import com.khs.restful.json.GsonSerializer;
 import com.khs.restful.json.IJsonSerializer;
 import com.khs.restful.system.Constants;

@@ -1,4 +1,4 @@
-package com.khs.restful;
+package com.khs.restful.client;
 
 import com.khs.restful.system.Constants;
 
@@ -26,4 +26,13 @@ public abstract class Response implements IResponse {
 	public String getContenetType() {
 		return Constants.TEXT_MIME;
 	}	
+	
+	public String toString() {
+		StringBuilder buf = new StringBuilder();
+		buf.append("isSuccess: ");
+		buf.append(isSuccess());
+		buf.append("\nResponse: ");
+		buf.append(getResponseText());
+		return buf.toString();
+	}
 }

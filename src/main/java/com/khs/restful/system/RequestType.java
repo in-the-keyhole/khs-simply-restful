@@ -4,5 +4,6 @@ public enum RequestType {
 
 	JSON,
 	TEXT,
-	XML
+	XML,
+	BYTE
 }
