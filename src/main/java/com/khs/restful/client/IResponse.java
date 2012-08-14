@@ -11,4 +11,8 @@ public interface IResponse {
 	 public void setResponseText(String text);
 	 
 	 public void setSuccess(boolean success);
+	 
+	 public void setStatusCode(int code);
+	 
+	 public int getStatusCode();
 }

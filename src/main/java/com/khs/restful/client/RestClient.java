@@ -89,10 +89,12 @@ public class RestClient<T extends IResponse> {
 	}
 
 	private void retrieveStatus(HttpResponse httpResponse) {
-		if (httpResponse != null
-				&& (httpResponse.getStatusLine().getStatusCode() == 200 || httpResponse
-						.getStatusLine().getStatusCode() == 201)) {
-			response.setSuccess(true);
+		if ( httpResponse != null ) {
+			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+			if (httpResponse.getStatusLine().getStatusCode() == 200 || httpResponse
+							.getStatusLine().getStatusCode() == 201) {
+				response.setSuccess(true);
+			}
 		}
 
 	}

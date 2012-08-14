@@ -6,6 +6,7 @@ public abstract class Response implements IResponse {
 
 	private String responseText;
 	private boolean success = false;
+	private int statusCode;
 	
 	public boolean isSuccess() {
 		return success;
@@ -15,6 +16,16 @@ public abstract class Response implements IResponse {
 		this.success = success;
 	}
 	
+	@Override
+	public int getStatusCode() {
+		return statusCode;
+	}
+
+	@Override
+	public void setStatusCode(int statusCode) {
+		this.statusCode = statusCode;
+	}
+
 	public String getResponseText() {
 		return responseText;
 	}
